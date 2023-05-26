@@ -61,8 +61,11 @@ function App() {
     });
     console.log(updateTask);
 
+    const dateObj = new Date(updateTask.DueDate);
+    const formattedDate = dateObj.toISOString().split("T")[0];
+    setDueDate(formattedDate);
+
     setContent(updateTask.Content);
-    setDueDate(updateTask.DueDate);
     setStatus(updateTask.Task_Status);
     setAssignedTo(updateTask.AssignedTo);
 
@@ -98,6 +101,7 @@ function App() {
             placeholder="Task"
             aria-label="Username"
             aria-describedby="basic-addon1"
+            value={content}
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
@@ -110,6 +114,7 @@ function App() {
             onChange={(e) => setDueDate(e.target.value)}
             type="date"
             id="due-date"
+            value={dueDate}
           />
         </div>
         {/* Status */}
@@ -117,6 +122,7 @@ function App() {
           <select
             onChange={(e) => setStatus(e.target.value)}
             style={{ height: 38, marginRight: 20 }}
+            value={status}
             name="status"
             id=""
           >
@@ -137,6 +143,7 @@ function App() {
             placeholder="Person incharge"
             aria-label="Username"
             aria-describedby="basic-addon1"
+            value={assignedTo}
             onChange={(e) => setAssignedTo(e.target.value)}
           />
         </div>
